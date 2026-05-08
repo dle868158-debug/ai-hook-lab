@@ -67,9 +67,9 @@ export default function TeacherIntro() {
           >
             <div className="relative">
               <img
-                src="/teacher-photo.png"
+                src="/teacher-photo.jpg"
                 alt="程老师"
-                className="w-64 h-64 rounded-2xl object-cover shadow-xl"
+                className="w-64 h-64 rounded-2xl object-cover object-top shadow-xl"
               />
             </div>
           </motion.div>
