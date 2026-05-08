@@ -2,13 +2,14 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Clock, Users, Trophy } from 'lucide-react';
+import { GraduationCap, Clock, Users, Trophy, Target } from 'lucide-react';
 
 const CREDENTIALS = [
-  { icon: GraduationCap, text: '武汉大学数学专业毕业' },
+  { icon: GraduationCap, text: '武汉大学数学专业本科' },
   { icon: Clock, text: '10年+高中数学教学经验' },
-  { icon: Users, text: '累计辅导学生500+人' },
+  { icon: Users, text: '累计辅导学生500+人，进步率95%' },
   { icon: Trophy, text: '多名学生考入985/211名校' },
+  { icon: Target, text: '学生平均提分20-60分' },
 ];
 
 export default function TeacherIntro() {
@@ -42,14 +43,18 @@ export default function TeacherIntro() {
 
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
-                程老师毕业于武汉大学数学系，拥有扎实的数学功底和丰富的教学经验。
-                从教10年来，始终坚持"授人以渔"的教学理念——不是让学生死记硬背公式，
-                而是帮助学生理解数学思维的底层逻辑，掌握举一反三的能力。
+                程老师毕业于武汉大学数学专业，深耕高中数学教学10余年。
+                先后任职于武汉学而思、十二方程仕等知名机构，
+                擅长高考数学系统复习、选填压轴题专项突破、答题规范与速度训练。
               </p>
               <p>
-                擅长将复杂的数学概念用通俗易懂的语言讲解，善于用生活中的案例解释抽象概念。
-                教学风格耐心细致、深入浅出，深受学生和家长的信赖。
-                针对不同基础的学生，制定个性化的学习方案，帮助每一位学生找到最适合自己的提分路径。
+                教学理念：理解本质 {'>'} 刷题套路 {'>'} 机械记忆。
+                注重引导学生构建完整的数学知识体系，帮助学生做到"做一题，通一类"。
+                历年高考数学平均提分20-60分，选填正确率提升至90%+，大题得分稳定在50+。
+              </p>
+              <p>
+                程老师教学风格严谨而不失幽默，擅长用生动的例子将抽象的数学概念具体化。
+                对学生有耐心、有责任心，课后全程答疑，作业逐题批改。
               </p>
             </div>
           </motion.div>
