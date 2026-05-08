@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '武大数学程老师 | 专注高中数学提分',
-  description: '武大数学系出身，10年+高中数学教学经验。高一同步拔高、高二重难点突破、高三高考冲刺，线上直播+录播+一对一辅导，帮助500+学生数学提分20-60分。',
+  title: '武大数学程老师 | 高中数学诊断式提分',
+  description: '武汉大学数学专业出身，10年+高中数学教学经验。面向高一同步、高二专题、高三冲刺和一对一诊断，帮助学生定位失分点、建立解题路径、稳定提升数学成绩。',
   keywords: '高中数学,数学辅导,高考数学,数学提分,一对一辅导,高中数学网课',
 };
 
@@ -23,7 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="font-sans antialiased bg-white text-navy-800 min-h-screen"
+        className="min-h-screen bg-paper font-sans text-ink-900 antialiased"
         style={{ fontFamily: "'Noto Sans SC', 'Inter', system-ui, sans-serif" }}
       >
         {children}

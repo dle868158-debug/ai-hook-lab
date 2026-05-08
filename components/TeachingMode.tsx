@@ -2,15 +2,14 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Monitor, Video, RotateCcw, HelpCircle, Download, BarChart3 } from 'lucide-react';
+import { BookMarked, ClipboardList, Headphones, MonitorPlay, Repeat2 } from 'lucide-react';
 
 const MODES = [
-  { icon: Monitor, title: '线上直播', desc: '实时互动、板书演示、即时答疑' },
-  { icon: Video, title: '高清录播', desc: '每节课高清录制，随时回看重点' },
-  { icon: RotateCcw, title: '永久回放', desc: '课程录播永久有效，考前随时复习' },
-  { icon: HelpCircle, title: '课后答疑', desc: '微信群+私信，48小时内解答' },
-  { icon: Download, title: '专属资料', desc: '配套讲义、练习题、知识总结PDF' },
-  { icon: BarChart3, title: '学情分析', desc: '定期反馈学习进度，调整教学策略' },
+  { icon: MonitorPlay, title: '直播上课', desc: '实时板书推导，学生当场反馈卡点。' },
+  { icon: Repeat2, title: '录播回看', desc: '重难点反复看，考前按模块复习。' },
+  { icon: ClipboardList, title: '课后作业', desc: '每节课配套训练，题量控制在有效范围。' },
+  { icon: Headphones, title: '微信答疑', desc: '不会的题及时处理，不让问题堆积。' },
+  { icon: BookMarked, title: '资料沉淀', desc: '讲义、错题、方法模板按阶段整理。' },
 ];
 
 export default function TeachingMode() {
@@ -18,28 +17,38 @@ export default function TeachingMode() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="teaching" className="section-padding bg-navy-50">
+    <section id="teaching" className="section-padding bg-white">
       <div className="container-narrow">
-        <div className="accent-bar" />
-        <h2 className="section-title">上课模式</h2>
-        <p className="section-subtitle">灵活高效，适合每一位学生</p>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-4">
+            <p className="eyebrow mb-3">上课方式</p>
+            <h2 className="mb-4 text-3xl font-bold leading-tight text-ink-900 md:text-4xl">
+              线上课也要有线下班的跟进感。
+            </h2>
+            <p className="leading-relaxed text-ink-500">
+              直播负责互动和当堂纠偏，录播负责复盘，作业和答疑负责把听懂变成做对。
+            </p>
+          </div>
 
-        <div ref={ref} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {MODES.map((mode, i) => (
-            <motion.div
-              key={mode.title}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex flex-col items-center text-center p-5 bg-white rounded-2xl hover:shadow-md transition-shadow"
-            >
-              <div className="w-14 h-14 rounded-full bg-navy-800 flex items-center justify-center mb-3">
-                <mode.icon size={24} className="text-orange-400" />
-              </div>
-              <h3 className="font-bold text-navy-800 text-sm mb-1">{mode.title}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed">{mode.desc}</p>
-            </motion.div>
-          ))}
+          <div ref={ref} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8">
+            {MODES.map((mode, i) => (
+              <motion.div
+                key={mode.title}
+                initial={{ opacity: 0, x: 18 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.38, delay: i * 0.07 }}
+                className="flex gap-4 border border-ink-100 bg-paper p-5"
+              >
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-ink-900 text-amber-300">
+                  <mode.icon size={21} />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-bold text-ink-900">{mode.title}</h3>
+                  <p className="text-sm leading-relaxed text-ink-500">{mode.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

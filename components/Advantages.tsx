@@ -2,38 +2,38 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Crosshair, Lightbulb, MessageCircle, Target, FileText, Clock } from 'lucide-react';
+import { BarChart3, FileText, MessageCircle, SearchCheck, Target, TimerReset } from 'lucide-react';
 
-const ADVANTAGES = [
+const STEPS = [
   {
-    icon: Crosshair,
-    title: '考点精准',
-    desc: '深研近10年高考真题，精准把握命题趋势和高频考点',
-  },
-  {
-    icon: Lightbulb,
-    title: '方法实用',
-    desc: '每个题型总结通用解法模板，举一反三，不做题海战术',
-  },
-  {
-    icon: MessageCircle,
-    title: '通俗易懂',
-    desc: '复杂概念用生活化语言讲解，数学不再是天书',
+    icon: SearchCheck,
+    title: '诊断',
+    desc: '先看试卷和作业，判断是概念断层、题型不会，还是计算和规范问题。',
   },
   {
     icon: Target,
-    title: '针对性提分',
-    desc: '根据每位学生薄弱点制定专属学习计划，精准突破',
+    title: '定线',
+    desc: '根据当前分数和目标分数，确定每周该攻克的模块和题量。',
   },
   {
     icon: FileText,
-    title: '资料齐全',
-    desc: '独家整理的知识点手册、错题本模板、高考冲刺资料包',
+    title: '讲透',
+    desc: '每类题保留核心入口、常见变形和得分步骤，减少无效刷题。',
   },
   {
-    icon: Clock,
-    title: '随时答疑',
-    desc: '课后微信随时提问，作业难题拍照即可获得详细解答',
+    icon: TimerReset,
+    title: '限时',
+    desc: '用考试节奏训练选填速度、计算稳定性和大题取舍。',
+  },
+  {
+    icon: MessageCircle,
+    title: '答疑',
+    desc: '课后问题及时反馈，避免小问题拖成下一阶段的失分点。',
+  },
+  {
+    icon: BarChart3,
+    title: '复盘',
+    desc: '阶段性整理错因，调整课程节奏，让进步可观察。',
   },
 ];
 
@@ -42,28 +42,31 @@ export default function Advantages() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="advantages" className="section-padding bg-white">
+    <section id="advantages" className="section-padding soft-band">
       <div className="container-narrow">
         <div className="accent-bar" />
-        <h2 className="section-title">为什么选择程老师</h2>
-        <p className="section-subtitle">六大核心优势，让提分更高效</p>
+        <h2 className="section-title">不是多刷题，而是按失分点提分</h2>
+        <p className="section-subtitle">
+          一套课从诊断开始，持续跟踪错因和得分变化，适合需要稳定提升的高中生。
+        </p>
 
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ADVANTAGES.map((item, i) => (
+        <div ref={ref} className="grid grid-cols-1 gap-px overflow-hidden border border-ink-100 bg-ink-100 md:grid-cols-2 lg:grid-cols-3">
+          {STEPS.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-start gap-4 p-6 rounded-2xl hover:bg-navy-50 transition-colors"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="bg-white p-6"
             >
-              <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center shrink-0">
-                <item.icon size={22} className="text-orange-500" />
+              <div className="mb-5 flex items-center justify-between">
+                <div className="grid h-12 w-12 place-items-center rounded-lg bg-sage-50 text-sage-700">
+                  <item.icon size={23} />
+                </div>
+                <span className="text-sm font-bold text-ink-200">0{i + 1}</span>
               </div>
-              <div>
-                <h3 className="font-bold text-navy-800 mb-1">{item.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-              </div>
+              <h3 className="mb-2 text-lg font-bold text-ink-900">{item.title}</h3>
+              <p className="text-sm leading-relaxed text-ink-500">{item.desc}</p>
             </motion.div>
           ))}
         </div>

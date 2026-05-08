@@ -8,6 +8,10 @@
     scroll-padding-top: 80px;
   }
 
+  body {
+    background: #fbf8f1;
+  }
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -29,7 +33,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-14 md:py-20;
   }
 
   .container-narrow {
@@ -37,14 +41,53 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-navy-800 text-center mb-4;
+    @apply text-3xl md:text-4xl font-bold text-ink-900 text-center mb-4;
   }
 
   .section-subtitle {
-    @apply text-gray-500 text-center text-lg mb-12 max-w-2xl mx-auto;
+    @apply text-ink-500 text-center text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed;
   }
 
   .accent-bar {
-    @apply w-12 h-1 bg-orange-500 mx-auto mb-6 rounded-full;
+    @apply w-12 h-1 bg-amber-400 mx-auto mb-5 rounded-full;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold text-sage-700 tracking-normal;
+  }
+
+  .soft-band {
+    @apply bg-paper border-y border-amber-100/70;
+  }
+
+  .nav-link {
+    border-radius: 9999px;
+    color: #425a78;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link-active {
+    background-color: #eef8f4;
+    box-shadow: inset 0 0 0 1px rgba(35, 108, 89, 0.16);
+    color: #1e5648;
+  }
+
+  .mobile-nav-link {
+    border-radius: 0.5rem;
+    color: #31435d;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link-active {
+    background-color: #eef8f4;
+    color: #1e5648;
   }
 }

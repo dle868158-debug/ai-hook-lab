@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const CASES = [
   {
@@ -12,8 +12,7 @@ const CASES = [
     after: 131,
     duration: '3个月',
     problem: '基础不扎实，计算错误多，大题经常空着',
-    solution: '一轮系统补基础 + 计算专项训练 + 限时练习',
-    highlights: ['选填正确率从60%提升到90%', '大题得分从30分提升到55分'],
+    method: '一轮补基础 + 计算专项 + 限时训练',
   },
   {
     name: '李同学',
@@ -21,9 +20,8 @@ const CASES = [
     before: 76,
     after: 118,
     duration: '5个月',
-    problem: '圆锥曲线和导数完全不会，考试直接放弃',
-    solution: '专题突破 + 方法模板 + 反复训练典型题',
-    highlights: ['圆锥曲线从0分到满分', '导数大题稳定拿8分以上'],
+    problem: '圆锥曲线和导数没有入口，考试直接放弃',
+    method: '专题突破 + 方法模板 + 典型题复盘',
   },
   {
     name: '赵同学',
@@ -31,9 +29,8 @@ const CASES = [
     before: 105,
     after: 138,
     duration: '4个月',
-    problem: '函数理解浅，大题不会规范书写，丢步骤分',
-    solution: '深度理解函数本质 + 答题规范训练 + 拔高训练',
-    highlights: ['函数大题满分', '期末年级排名前20'],
+    problem: '函数理解浅，大题书写不规范，步骤分丢失',
+    method: '函数本质讲解 + 规范训练 + 拔高题组',
   },
 ];
 
@@ -42,58 +39,66 @@ export default function Cases() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="cases" className="section-padding bg-navy-50">
+    <section id="cases" className="section-padding bg-ink-900 text-white">
       <div className="container-narrow">
-        <div className="accent-bar" />
-        <h2 className="section-title">提分案例</h2>
-        <p className="section-subtitle">真实学员成绩提升记录</p>
+        <div className="mx-auto mb-5 h-1 w-12 rounded-full bg-amber-300" />
+        <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">提分案例看路径，不只看数字</h2>
+        <p className="mx-auto mb-10 max-w-2xl text-center text-base leading-relaxed text-ink-200 md:text-lg">
+          分数提升背后通常不是单一技巧，而是薄弱点定位、模块训练和考试节奏共同变化。
+        </p>
 
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {CASES.map((c, i) => (
-            <motion.div
-              key={c.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-white rounded-2xl p-6 shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-bold text-navy-800">{c.name}</span>
-                <span className="text-xs font-medium text-navy-500 bg-navy-50 px-2 py-1 rounded">{c.grade} · {c.duration}</span>
-              </div>
+        <div ref={ref} className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {CASES.map((c, i) => {
+            const delta = c.after - c.before;
+            return (
+              <motion.article
+                key={c.name}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className="border border-white/12 bg-white/[0.06] p-6 backdrop-blur-sm"
+              >
+                <div className="mb-6 flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-white">{c.name}</h3>
+                    <p className="text-sm text-ink-200">{c.grade} · {c.duration}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-300 px-3 py-1 text-sm font-bold text-ink-900">
+                    +{delta}
+                    <ArrowUpRight size={15} />
+                  </span>
+                </div>
 
-              <div className="flex items-center justify-center gap-3 mb-5 py-4 bg-navy-50 rounded-xl">
-                <span className="text-3xl font-bold text-gray-400">{c.before}</span>
-                <ArrowRight size={24} className="text-orange-500" />
-                <span className="text-3xl font-bold text-navy-800">{c.after}</span>
-                <span className="text-sm font-bold text-white bg-orange-500 px-2 py-1 rounded-full">
-                  +{c.after - c.before}分
-                </span>
-              </div>
+                <div className="mb-6 flex items-end gap-4">
+                  <div className="flex-1">
+                    <div className="mb-2 text-sm text-ink-300">入课前</div>
+                    <div className="h-24 bg-white/10">
+                      <div className="h-full w-full bg-ink-500/60" style={{ transform: `scaleY(${c.before / 150})`, transformOrigin: 'bottom' }} />
+                    </div>
+                    <div className="mt-2 text-2xl font-bold text-ink-200">{c.before}</div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="mb-2 text-sm text-amber-200">阶段后</div>
+                    <div className="h-24 bg-white/10">
+                      <div className="h-full w-full bg-amber-300" style={{ transform: `scaleY(${c.after / 150})`, transformOrigin: 'bottom' }} />
+                    </div>
+                    <div className="mt-2 text-2xl font-bold text-amber-200">{c.after}</div>
+                  </div>
+                </div>
 
-              <div className="space-y-3 text-sm">
-                <div>
-                  <span className="font-medium text-navy-700">问题诊断：</span>
-                  <span className="text-gray-600">{c.problem}</span>
+                <div className="space-y-3 text-sm leading-relaxed">
+                  <p>
+                    <span className="font-semibold text-amber-200">问题：</span>
+                    <span className="text-ink-100">{c.problem}</span>
+                  </p>
+                  <p>
+                    <span className="font-semibold text-amber-200">方法：</span>
+                    <span className="text-ink-100">{c.method}</span>
+                  </p>
                 </div>
-                <div>
-                  <span className="font-medium text-navy-700">解决方案：</span>
-                  <span className="text-gray-600">{c.solution}</span>
-                </div>
-                <div>
-                  <span className="font-medium text-navy-700">进步亮点：</span>
-                  <ul className="mt-1 space-y-1">
-                    {c.highlights.map((h) => (
-                      <li key={h} className="text-gray-600 flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 shrink-0" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

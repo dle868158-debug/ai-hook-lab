@@ -2,38 +2,48 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { BookOpen, Target, TrendingUp, Award, Users } from 'lucide-react';
+import { ArrowRight, BookOpen, Compass, GraduationCap, Layers, Target } from 'lucide-react';
 
 const COURSES = [
   {
     icon: BookOpen,
-    title: '高一数学同步课',
-    grade: '高一',
-    highlights: ['紧跟教材进度，夯实基础', '函数、集合、三角函数重点突破', '预习+同步+复习三位一体'],
+    stage: '高一',
+    title: '同步拔高班',
+    focus: '函数、集合、三角函数、立体几何',
+    audience: '适合刚进高中不适应、作业能做但考试不稳的学生',
+    result: '把概念、题型、规范同步搭起来',
+  },
+  {
+    icon: Layers,
+    stage: '高二',
+    title: '重难点专题班',
+    focus: '导数、圆锥曲线、数列、概率统计',
+    audience: '适合某几个模块长期丢分、越学越碎的学生',
+    result: '用专题框架补齐“不会下手”的断点',
+  },
+  {
+    icon: Compass,
+    stage: '高三一轮',
+    title: '系统复习班',
+    focus: '知识网重建、典型题归类、错题复盘',
+    audience: '适合基础不差但成绩卡在90-115分的学生',
+    result: '从零散刷题转向稳定拿分',
   },
   {
     icon: Target,
-    title: '高二重难点专题课',
-    grade: '高二',
-    highlights: ['圆锥曲线、导数专题精讲', '概率统计难点模块突破', '专题式教学，各个击破'],
+    stage: '高三二轮',
+    title: '压轴突破班',
+    focus: '选填压轴、解析几何、导数综合',
+    audience: '适合想冲120+/130+、最后两题拿不满的学生',
+    result: '训练识别题眼、步骤分和限时策略',
   },
   {
-    icon: TrendingUp,
-    title: '高三一轮复习课',
-    grade: '高三上',
-    highlights: ['系统梳理知识体系', '构建解题框架，查漏补缺', '夯实基础，冲刺120+'],
-  },
-  {
-    icon: Award,
-    title: '高三二轮压轴题专项',
-    grade: '高三下',
-    highlights: ['选填压轴题秒杀技巧', '大题最后两题攻克策略', '冲刺130+ / 140+'],
-  },
-  {
-    icon: Users,
-    title: '一对一私教课',
-    grade: '高一至高三',
-    highlights: ['个性化学情诊断', '定制专属提分方案', '灵活时间，针对性极强'],
+    icon: GraduationCap,
+    stage: '定制',
+    title: '一对一诊断课',
+    focus: '薄弱点定位、阶段计划、作业批改',
+    audience: '适合时间紧、目标明确、需要个性化跟进的学生',
+    result: '按当前分数和目标院校倒推学习路径',
   },
 ];
 
@@ -42,46 +52,51 @@ export default function Courses() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="courses" className="section-padding bg-white">
+    <section id="courses" className="section-padding bg-paper">
       <div className="container-narrow">
         <div className="accent-bar" />
-        <h2 className="section-title">课程体系</h2>
-        <p className="section-subtitle">覆盖高中三年，每个阶段都有针对性解决方案</p>
+        <h2 className="section-title">按年级和分数段设计课程</h2>
+        <p className="section-subtitle">
+          家长不需要先判断该报什么班，先做一次学情诊断，再匹配同步、专题、冲刺或一对一方案。
+        </p>
 
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={ref} className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {COURSES.map((course, i) => (
-            <motion.div
+            <motion.article
               key={course.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-6 rounded-2xl border border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300 group"
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="group border border-ink-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sage-200 hover:shadow-lg"
             >
-              <div className="w-12 h-12 rounded-xl bg-navy-50 flex items-center justify-center mb-4 group-hover:bg-orange-50 transition-colors">
-                <course.icon size={24} className="text-navy-600 group-hover:text-orange-500 transition-colors" />
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-11 w-11 place-items-center rounded-lg bg-sage-50 text-sage-700">
+                    <course.icon size={22} />
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold text-amber-700">{course.stage}</span>
+                    <h3 className="text-lg font-bold text-ink-900">{course.title}</h3>
+                  </div>
+                </div>
+                <ArrowRight size={18} className="mt-2 text-ink-300 transition-colors group-hover:text-sage-700" />
               </div>
 
-              <h3 className="text-lg font-bold text-navy-800 mb-1">{course.title}</h3>
-              <span className="inline-block text-xs font-medium text-orange-600 bg-orange-50 px-2 py-0.5 rounded mb-4">
-                适合年级：{course.grade}
-              </span>
-
-              <ul className="space-y-2 mb-6">
-                {course.highlights.map((h) => (
-                  <li key={h} className="text-sm text-gray-600 flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 shrink-0" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#contact"
-                className="inline-block text-sm font-medium text-navy-700 border border-navy-200 px-5 py-2 rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all"
-              >
-                咨询了解
-              </a>
-            </motion.div>
+              <dl className="space-y-3 text-sm leading-relaxed">
+                <div>
+                  <dt className="font-semibold text-ink-800">重点模块</dt>
+                  <dd className="text-ink-500">{course.focus}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-ink-800">适合学生</dt>
+                  <dd className="text-ink-500">{course.audience}</dd>
+                </div>
+                <div className="border-t border-ink-100 pt-3">
+                  <dt className="font-semibold text-sage-800">阶段目标</dt>
+                  <dd className="text-ink-700">{course.result}</dd>
+                </div>
+              </dl>
+            </motion.article>
           ))}
         </div>
       </div>

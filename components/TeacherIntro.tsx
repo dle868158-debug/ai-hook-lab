@@ -2,14 +2,20 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Clock, Users, Trophy, Target } from 'lucide-react';
+import { Award, Building2, CheckCircle2, GraduationCap, PenLine } from 'lucide-react';
+import TeacherPhoto from './TeacherPhoto';
 
 const CREDENTIALS = [
-  { icon: GraduationCap, text: '武汉大学数学专业本科' },
-  { icon: Clock, text: '10年+高中数学教学经验' },
-  { icon: Users, text: '累计辅导学生500+人，进步率95%' },
-  { icon: Trophy, text: '多名学生考入985/211名校' },
-  { icon: Target, text: '学生平均提分20-60分' },
+  { icon: GraduationCap, label: '武汉大学数学专业本科' },
+  { icon: Building2, label: '曾任武汉学而思、十二方程仕高中数学教师' },
+  { icon: Award, label: '高考数学系统复习与压轴题专项训练' },
+  { icon: PenLine, label: '课后答疑、作业批改、阶段反馈' },
+];
+
+const PRINCIPLES = [
+  '先定位失分原因，再安排训练内容',
+  '每类题沉淀解题入口，不让学生死背套路',
+  '重视答题规范和限时训练，把会做转化为拿分',
 ];
 
 export default function TeacherIntro() {
@@ -17,60 +23,66 @@ export default function TeacherIntro() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="teacher" className="section-padding bg-navy-50">
+    <section id="teacher" className="section-padding bg-white">
       <div className="container-narrow">
-        <div className="accent-bar" />
-        <h2 className="section-title">关于程老师</h2>
-        <p className="section-subtitle">专业、耐心、有方法，让数学不再是难题</p>
-
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+        <div ref={ref} className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -26 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3"
+            transition={{ duration: 0.55 }}
+            className="lg:col-span-5"
           >
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {CREDENTIALS.map((c) => (
-                <div key={c.text} className="flex items-center gap-3 p-3 bg-white rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center shrink-0">
-                    <c.icon size={20} className="text-orange-500" />
-                  </div>
-                  <span className="text-sm font-medium text-navy-700">{c.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="space-y-4 text-gray-600 leading-relaxed">
-              <p>
-                程老师毕业于武汉大学数学专业，深耕高中数学教学10余年。
-                先后任职于武汉学而思、十二方程仕等知名机构，
-                擅长高考数学系统复习、选填压轴题专项突破、答题规范与速度训练。
-              </p>
-              <p>
-                教学理念：理解本质 {'>'} 刷题套路 {'>'} 机械记忆。
-                注重引导学生构建完整的数学知识体系，帮助学生做到"做一题，通一类"。
-                历年高考数学平均提分20-60分，选填正确率提升至90%+，大题得分稳定在50+。
-              </p>
-              <p>
-                程老师教学风格严谨而不失幽默，擅长用生动的例子将抽象的数学概念具体化。
-                对学生有耐心、有责任心，课后全程答疑，作业逐题批改。
-              </p>
+            <div className="relative overflow-hidden bg-ink-900">
+              <TeacherPhoto alt="程老师" className="relative aspect-[4/5] w-full" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900 via-ink-900/65 to-transparent p-6 pt-24">
+                <p className="text-sm font-semibold text-amber-200">武大数学程老师</p>
+                <p className="mt-1 text-2xl font-bold text-white">把复杂题讲成可执行步骤</p>
+              </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 26 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 flex justify-center"
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="lg:col-span-7"
           >
-            <div className="relative">
-              <img
-                src="/teacher-photo.jpg"
-                alt="程老师"
-                className="w-64 h-64 rounded-2xl object-cover object-top shadow-xl"
-              />
+            <p className="eyebrow mb-3">关于老师</p>
+            <h2 className="mb-5 text-3xl font-bold leading-tight text-ink-900 md:text-4xl">
+              家长看重靠谱，学生需要听得懂。
+            </h2>
+            <div className="space-y-4 text-base leading-relaxed text-ink-600">
+              <p>
+                程老师毕业于武汉大学数学专业，深耕高中数学教学10余年，曾任职于武汉学而思、十二方程仕等机构。
+                课程重点不是把题讲完，而是让学生知道每一步为什么这么想、考试时怎么快速落笔。
+              </p>
+              <p>
+                对基础薄弱学生，先补概念和计算；对中等学生，重点训练题型识别和步骤分；对冲高分学生，
+                聚焦选填压轴、导数和解析几何的稳定突破。
+              </p>
+            </div>
+
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {CREDENTIALS.map((item) => (
+                <div key={item.label} className="flex items-center gap-3 border border-ink-100 bg-ink-50/70 p-4">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white text-sage-700">
+                    <item.icon size={20} />
+                  </div>
+                  <span className="text-sm font-medium leading-relaxed text-ink-700">{item.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-7 border-l-4 border-amber-300 bg-amber-50 p-5">
+              <h3 className="mb-3 font-bold text-ink-900">课堂原则</h3>
+              <ul className="space-y-2">
+                {PRINCIPLES.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-ink-700">
+                    <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-sage-700" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>
