@@ -71,7 +71,7 @@ export default function Contact() {
           >
             <div className="bg-white rounded-2xl p-6 text-center">
               <img
-                src="/wechat-qr.png"
+                src="/wechat-qr.jpg"
                 alt="添加程老师微信"
                 className="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto"
                 onError={(e) => {
