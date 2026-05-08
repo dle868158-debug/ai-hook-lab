@@ -1,37 +1,39 @@
-# AI Hook Lab
+# cheng-math-tutoring-site
+
+武大数学程老师高中数学官网。
+
+面向高中学生和家长的个人授课官网，展示程老师的教学背景、课程体系、教学优势、提分案例和微信咨询入口。
 
 ## 功能特性
 
-- 输入主题，选择平台和内容类型
-- AI 一键生成 10 个不同风格的爆款 Hook
-- 每个 Hook 包含类型、文案、风格标签、点击欲评分、推荐理由
-- 支持复制、收藏、查看历史
-- 无 API Key 时显示清晰错误提示
+- 单页锚点导航，覆盖课程、师资、优势、上课模式、评价、案例和联系方式
+- 移动端汉堡菜单与响应式布局
+- 使用真实教师照片和微信二维码资源
+- Framer Motion 滚动入场动画
+- SEO metadata 已配置为中文高中数学辅导场景
 
 ## 技术栈
 
-- Next.js 14 (App Router)
+- Next.js 14 App Router
 - TypeScript
 - Tailwind CSS
-- Anthropic Claude API
+- Framer Motion
+- Lucide React
 
-## 配置
-
-1. 复制 `.env.local.example` 为 `.env.local`
-2. 填入你的 API Key：
-   ```
-   ANTHROPIC_API_KEY=your_api_key_here
-   ```
-
-## 开发
+## 本地开发
 
 ```bash
 npm install
 npm run dev
 ```
 
-## 部署到 Vercel
+## 质量检查
 
-1. 在 Vercel 导入项目
-2. 在 Vercel 控制台添加环境变量 `ANTHROPIC_API_KEY`
-3. 部署
+```bash
+npm run lint
+npm run build
+```
+
+## 部署
+
+项目通过 GitHub 推送触发 Vercel 自动部署，并由 Cloudflare Worker 反代到自定义域名。部署链路和历史记录见 `PROJECT_LOG.md`。
