@@ -66,14 +66,11 @@ export default function TeacherIntro() {
             className="lg:col-span-2 flex justify-center"
           >
             <div className="relative">
-              <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <div className="text-6xl mb-2 opacity-30">∑</div>
-                  <div className="text-lg font-bold">武大数学</div>
-                  <div className="text-2xl font-bold text-orange-400">程老师</div>
-                </div>
-              </div>
-              <div className="absolute -bottom-3 -right-3 w-64 h-64 rounded-2xl border-2 border-orange-300 -z-10" />
+              <img
+                src="/teacher-photo.png"
+                alt="程老师"
+                className="w-64 h-64 rounded-2xl object-cover shadow-xl"
+              />
             </div>
           </motion.div>
         </div>
